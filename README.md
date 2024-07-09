@@ -1,6 +1,4 @@
 # CharCet
-Incorporating Transcription Factors in Genome-wide Prediction of Chromatin Accessibility.
-
  
  ![model](https://github.com/meiyichao/CharCet/blob/main/model.png)
  
