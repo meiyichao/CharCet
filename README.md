@@ -29,17 +29,14 @@ After downloading the data,We provide '1.Extracting_h5ad_file_information.py' to
 python 1.Extracting_h5ad_file_information.py
 ```
 **Step 2**: Preprocess scRNA-seq data and generate expression matrix(C x N)
-
-We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes. The preprocessed expression matrix is as follows:
+We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg). The preprocessed expression matrix is as follows:
 ```
-	hvg_1	        hvg_2	        hvg_3	        ...     hvg_4
+	hvg_1	        hvg_2	        hvg_3	        ...     hvg_N
 1	0.006225735	-0.152664427	-0.254163005	...	-0.038108164
 2	-0.192960961	-0.17115587	-0.192574967	...	-0.051457183
 ...	...     	...     	...     	...  	...
 19	-0.352929977	0.171524705	0.532515698	...	-0.065238186
 ```
-The merged data (`e.g. 1.TPM.tsv and 1.peak.bins.bed`) will be located in `data/processed_RNA_DNase` folder.
-
 **Step 3**: Loci filtering and candidate regulatory regions selection
 
 Please refer to `Supplementary Figure 1` for candidate regulatory regions selection strategy. Directly run `bash 3.0.Generate_peak_bin.sh` to generate candidate regulatory regions set (`union.peaks.bed` and `union.peaks.pad1k.bed`)
