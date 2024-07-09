@@ -60,15 +60,9 @@ region_L	0	0	1	...	1
 
 For the remaining genomic loci mentioned above, each locus has a length of 200bp. For the prediction of each locus, we use a 1000bp DNA sequence around it. To facilitate the acquisition of this DNA sequence, we expand the upstream and downstream ranges of each locus by 400bp each (this operation only obtains a 1000bp DNA sequence, and the actual prediction range for each locus is still 200bp), and then use the getfasta function of the bedtools tool to obtain the base sequence. The provided code is "6.Getfasta.py"
 
-**Step 7**: Normalizing reads count
+**Step 7**: Generating label matrix for Regression(L x C)
 
-For reads count across different cell line, we normalize it by log transformation.
-```python
-python 3.5.Normalize_readscount.py <CELL_SET> <OUTPUT>
-CELL_SET: cell id set
-OUTPUT: output normalized reads count matrix file
-```
-**NOTES**: If one need to run DeepCAGE with custom data, what he/she needs to do is to generate three matrices (`TF expression matrix`, `motif score matrix` and `label matrix`) by own. 
+The generation of the label matrix for regression tasks is similar to that for classification tasks, and the label matrix can be generated through "7.bedtools_intersect_regress.py" and "8.Generating_label_matrix_regress.R"
 
 ## Model training and test
 
