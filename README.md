@@ -29,6 +29,7 @@ After downloading the data,We provide '1.Extracting_h5ad_file_information.py' to
 python 1.Extracting_h5ad_file_information.py
 ```
 **Step 2**: Preprocess scRNA-seq data and generate expression matrix(C x N)
+
 We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg). The preprocessed expression matrix is as follows:
 ```
 	hvg_1	        hvg_2	        hvg_3	        ...     hvg_N
