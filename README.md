@@ -31,17 +31,12 @@ python 1.Extracting_h5ad_file_information.py
 **Step 2**: Preprocess scRNA-seq data and generate expression matrix(C x N)
 
 We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes. The preprocessed expression matrix is as follows:
-
-| 表头1 | 表头2 | 表头3 |
-|:------|:-----|:------|
-| 单元格1 | 单元格2 | 单元格3 |
-| 单元格4 | 单元格5 | 单元格6 |
 ```
-    hvg_1    hvg_2	   hvg_3	   ...	   hvg_4
-1	  0.006225735	-0.152664427	-0.254163005	0.138661502	-0.038108164
-2	  -0.192960961	-0.17115587	-0.192574967	-0.010391803	-0.051457183
-...	-0.263665667	-0.156005216	-0.270252376	0.0532738	-0.013202243
-19	 -0.352929977	0.171524705	0.532515698	-0.089910158	-0.065238186
+      hvg_1          hvg_2	          hvg_3	           ...	            hvg_4
+1	    0.006225735	   -0.152664427	   -0.254163005	                    -0.038108164
+2	    -0.192960961	  -0.17115587	    -0.192574967	    	               -0.051457183
+...	  
+19	   -0.352929977	  0.171524705	    0.532515698	     	               -0.065238186
 ```
 The merged data (`e.g. 1.TPM.tsv and 1.peak.bins.bed`) will be located in `data/processed_RNA_DNase` folder.
 
