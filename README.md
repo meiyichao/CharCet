@@ -42,15 +42,10 @@ We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, wh
 
 This step is a preliminary preprocessing of scATAC seq data. We provide "3.Generation_celltype_specific_packs.R" to obtain cell type-specific peaks. Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
 
-**Step 4**: Generating expression matrix (N x C)
+**Step 4**: Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval)
 
-The TF gene expression matrix size is `N x C` where N is the number of TFs and C is the number of cell lines. 
+We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open.The code we provide for this step is "4.bedtools_intersect_class.py"
 
-```python
-python 3.1.Generate_tf_exp.py <CELL_SET> <OUTPUT>
-CELL_SET: cell id set
-OUTPUT: output expression matrix file
-```
 **Step 5**: Generating motif score matrix (L x N)
 
 The motif score matrix size is `L x N` where L is the number of candidate regulatory loci and N is the number of the coresponding TFs.
