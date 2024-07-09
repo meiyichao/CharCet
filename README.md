@@ -23,15 +23,10 @@ We provide detailed step-by-step instructions for running CharCet model includin
 ## Data preprocessing
 **Step 1**: Download scATAC-seq and scRNA-seq data annotated with cell types(h5ad files)
 
-We provided `1.Extracting_h5ad_file_information.py` for download RNA-seq data (.tsv) and DNase-seq data (.narrowPeak and .bam) from the ENCODE project
-We pre-defined cell type ID from 1-55. After downloading the meta data from ENCODE website (`head -n 1 files.txt|xargs -L 1 curl -O -L`), one can run the following script:
+After downloading the data,We provide '1.Extracting_h5ad_file_information.py' to extract matrix(.csv) and metadata(.csv) information from the h5ad file,you can execute the following code to obtain the corresponding information.
 
 ```python
-bash 1.Download_raw_data.bash  -c <CELL_ID> -r -p -b
--c  CELLID: pre-defined cell ID (from 1 to 55)
--r  download RNA-seq data (.tsv)
--p  download chromatin accessible peaks from DNase-seq data (.narrowPeak)
--b  download chromatin accessible readscount from DNase-seq data (.bam)
+python 1.Extracting_h5ad_file_information.py
 ```
 one can also run ```bash 1.Download_raw_data.bash  -h``` to show the script instructions. Note that `.bam` files downloading may take time. After downloading the raw data, the raw data folder will be organized by `cell-assay-experiment-file` order. Note that each experiment may contain multiple replicates. See an example of the folder tree:
 
