@@ -56,19 +56,10 @@ region_2	1	1	0	...	1
 ...     	...    	...    	...    	...  	...
 region_L	0	0	1	...	1
 ```
-**Step 6**: Generating label matrix (L x C)
+**Step 6**: Getfasta
 
-We provide scripts for generating both binary label matrix (classification) and continuous label matrix (regression) here.
+For the remaining genomic loci mentioned above, each locus has a length of 200bp. For the prediction of each locus, we use a 1000bp DNA sequence around it. To facilitate the acquisition of this DNA sequence, we expand the upstream and downstream ranges of each locus by 400bp each (this operation only obtains a 1000bp DNA sequence, and the actual prediction range for each locus is still 200bp), and then use the getfasta function of the bedtools tool to obtain the base sequence. The provided code is "6.Getfasta.py"
 
-The label matrix size is `L X C` where L is the number of candidate regulatory loci and C is the number of cell lines.
-
-Use the following two scripts for generating binary label matrix
-```python
-python 3.3.Generate_label.py <PEAK_FILE> <CELL_SET> <OUTPUT> / 3.4.Generate_label.py <PEAK_FILE> <CELL_SET> <OUTPUT>
-PEAK_FILE: the generated union peak file in `Step 3` (e.g. `union.peaks.bed`)
-CELL_SET: cell id set
-OUTPUT: output label matrix file
-```
 **Step 7**: Normalizing reads count
 
 For reads count across different cell line, we normalize it by log transformation.
