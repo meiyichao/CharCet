@@ -1,8 +1,8 @@
-# DeepCAGE
+# CharCet
 Incorporating Transcription Factors in Genome-wide Prediction of Chromatin Accessibility.
 
  
- ![model](https://github.com/kimmo1019/DeepCAGE/blob/master/model.png)
+ ![model](https://github.com/meiyichao/CharCet/model.png)
  
  DeepCAGE contains a deep densely connected convolutional network and a joint module for incorporating TF gene expression and motif score.
  
