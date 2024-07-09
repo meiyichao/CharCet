@@ -38,9 +38,9 @@ We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, wh
 ...	...     	...     	...     	...  	...
 19	-0.352929977	0.171524705	0.532515698	...	-0.065238186
 ```
-**Step 3**: Loci filtering and candidate regulatory regions selection
+**Step 3**: Preprocess scATAC-seq data and obtain cell type-specific peaks
 
-Please refer to `Supplementary Figure 1` for candidate regulatory regions selection strategy. Directly run `bash 3.0.Generate_peak_bin.sh` to generate candidate regulatory regions set (`union.peaks.bed` and `union.peaks.pad1k.bed`)
+This step is a preliminary preprocessing of scATAC seq data. We provide "3.Generation_celltype_specific_packs.R" to obtain cell type-specific peaks. Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
 
 **Step 4**: Generating expression matrix (N x C)
 
