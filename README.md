@@ -32,11 +32,11 @@ python 1.Extracting_h5ad_file_information.py
 
 We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes. The preprocessed expression matrix is as follows:
 ```
-	A2M	        ABAT	        ABCA1	        ABCA3	        ABCA6
-1	0.006225735	-0.152664427	-0.254163005	0.138661502	-0.038108164
-2	-0.192960961	-0.17115587	-0.192574967	-0.010391803	-0.051457183
-3	-0.263665667	-0.156005216	-0.270252376	0.0532738	-0.013202243
-4	-0.352929977	0.171524705	0.532515698	-0.089910158	-0.065238186
+	hvg_1	        hvg_2	        hvg_3	        ...	        hvg_4
+1	0.006225735	-0.152664427	-0.254163005	...	-0.038108164
+2	-0.192960961	-0.17115587	-0.192574967	...	-0.051457183
+...	...     	...     	...     	...  	...
+19	-0.352929977	0.171524705	0.532515698	...	-0.065238186
 ```
 ```
     hvg_1     hvg_2	    hvg_3	    ...	    hvg_4
