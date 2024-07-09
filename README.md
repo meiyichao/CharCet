@@ -66,19 +66,27 @@ The generation of the label matrix for regression tasks is similar to that for c
 
 ## Model training and test
 
-We provide `4.classification.py` and `5.Regression.py` for run DeepCAGE in a classication and regression settings, respectively.
+We provide `Classification_model.py` and `Regression_model.py` for run CharCet in a classication and regression settings, respectively.
 ```python
-python 4.classification.py <GPU_ID> <FOLD_ID>
-GPU_ID: GPU card id, default: 0
-FOLD_ID: cross validation fold id, from 0-4
+python Classification_model.py <FOLD_ID> <Sample_Ratio>
+FOLD_ID: cross validation fold id, from 1-19
+Sample_Ratio:Sample ratio for training,from 0-1
 ```
 ```python
-python 5.Regression.py <GPU_ID> <FOLD_ID>
-GPU_ID: GPU card id, default: 0
-FOLD_ID: cross validation fold id, from 0-4
+python Regression_model.py <FOLD_ID> <Sample_Ratio>
+FOLD_ID: cross validation fold id, from 1-19
+Sample_Ratio:Sample ratio for training,from 0-1
 ```
-Note that the deault setting will be multi-gpu model. The trained model will be saved in `data/models` folder and prediction outcome will be saved in `data` folder.
-
+```python
+python Classification_test.py <FOLD_ID> <Sample_Ratio>
+FOLD_ID: cross validation fold id, from 1-19
+Sample_Ratio:Sample ratio for training,from 0-1
+```
+```python
+python Regression_test.py <FOLD_ID> <Sample_Ratio>
+FOLD_ID: cross validation fold id, from 1-19
+Sample_Ratio:Sample ratio for training,from 0-1
+```
 
 # License
 This project is licensed under the MIT License - see the LICENSE.md file for details
