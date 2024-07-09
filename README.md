@@ -50,7 +50,7 @@ We use the intersect function of the bedtools tool to map cell type-specific pea
 
 After obtaining the cell type-specific peaks mentioned above, we retained genomic loci with clear ATAC seq signals in at least one cell type for subsequent analysis. We provide "5.Generating_label_matrix_class.R" to generate the label matrix.The label matrix size is `L x C` where L is the number of candidate regulatory loci and C is the number of cell types.The format of the generated label matrix is as follows:
 ```
-        	hvg_1   hvg_2   hvg_3   ...     hvg_N
+        	1       2       3       ...     C
 region_1	0	1	0	...	0
 region_2	1	1	0	...	1
 ...     	...    	...    	...    	...  	...
