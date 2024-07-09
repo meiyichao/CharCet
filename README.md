@@ -93,7 +93,11 @@ python Regression_test.py <FOLD_ID> <Sample_Ratio>
 FOLD_ID: cross validation fold id, from 1-19
 Sample_Ratio:Sample ratio for testing,from 0-1
 ```
+# Contact us
 
+**Yichao Mei**: meiyichao0121@163.com <br>
+**Ling-Ling Chen**: llchen@mail.hzau.edu.cn <br>
+**Junxiang Gao**: gao200@mail.hzau.edu.cn <br>
 
 
 
