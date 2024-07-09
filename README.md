@@ -23,34 +23,14 @@ We provide detailed step-by-step instructions for running CharCet model includin
 ## Data preprocessing
 **Step 1**: Download scATAC-seq and scRNA-seq data annotated with cell types(h5ad files)
 
-After downloading the data,We provide '1.Extracting_h5ad_file_information.py' to extract matrix(.csv) and metadata(.csv) information from the h5ad file,you can execute the following code to obtain the corresponding information.
+After downloading the data,We provide '1.Extracting_h5ad_file_information.py' to extract matrix(.csv) and metadata(.csv) information from the h5ad file,one can execute the following code to obtain the corresponding information.
 
 ```python
 python 1.Extracting_h5ad_file_information.py
 ```
-one can also run ```bash 1.Download_raw_data.bash  -h``` to show the script instructions. Note that `.bam` files downloading may take time. After downloading the raw data, the raw data folder will be organized by `cell-assay-experiment-file` order. Note that each experiment may contain multiple replicates. See an example of the folder tree:
+**Step 2**: Preprocess scRNA-seq data and generate expression matrix(C x N)
 
-```
-data/
-    |-- raw_data/
-    |   |-- 1/
-    |   |   |-- dseq/
-    |   |   |   |-- ENCSR000EIE/
-    |   |   |   |   |-- ENCFF953HEA.bed.gz
-    |   |   |   |   |-- ENCFF983PML.bam
-    |   |   |   |-- ENCSR000ELW/
-    |   |   |   |   |...
-    |   |   |-- rseq/
-    |   |   |   |-- ENCSR000BXY/
-    |   |   |   |   |-- ENCFF110IED.tsv
-    |   |   |   |   |-- ENCFF219FVQ.tsv
-    |   |   |   |-- ENCSR000BYH/
-    |   |   |   |   |...
-```
-
-**Step 2**: Merge multiple replicates of DNase-seq and RNA-seq data
-
-We merge multiple replicate of RNA-seq data by taking the average expression of each gene across replicates in a cell type. As for DNase-seq data, we only keep bins that appear in more than half of the replicates with respect to a cell type. One can run the following scripts to merge relicates of both DNase-seq and RNA-seq data. Note that the referece genome (`hg19`) will be automatically downloaded.
+We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes. The preprocessed expression matrix is as follows:
 
 ```python
 python 2.Merge_multi_rep_data  <CELL_ID> 
