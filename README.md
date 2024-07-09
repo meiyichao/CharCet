@@ -16,15 +16,14 @@ CharCet can be downloaded by
 ```shell
 git clone https://github.com/meiyichao/CharCet
 ```
-Installation has been tested in a Linux/MacOS platform.
 
 # Instructions
 We provide detailed step-by-step instructions for running CharCet model including data preprocessing, model training, and model test.
 
 ## Data preprocessing
-**Step 1**: Download raw DNase-seq and RNA-seq data
+**Step 1**: Download scATAC-seq and scRNA-seq data annotated with cell types(h5ad files)
 
-We provided `1.Download_raw_data.sh` for download RNA-seq data (.tsv) and DNase-seq data (.narrowPeak and .bam) from the ENCODE project
+We provided `1.Extracting_h5ad_file_information.py` for download RNA-seq data (.tsv) and DNase-seq data (.narrowPeak and .bam) from the ENCODE project
 We pre-defined cell type ID from 1-55. After downloading the meta data from ENCODE website (`head -n 1 files.txt|xargs -L 1 curl -O -L`), one can run the following script:
 
 ```python
