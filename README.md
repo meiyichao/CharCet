@@ -45,6 +45,9 @@ This step is a preliminary preprocessing of scATAC seq data. We provide "3.Gener
 **Step 4**: Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval)
 
 We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open.The code we provide for this step is "4.bedtools_intersect_class.py"
+```python
+python 4.bedtools_intersect_class.py
+```
 
 **Step 5**: Generating label matrix for Classification(L x C)
 
@@ -59,6 +62,9 @@ region_L	0	0	1	...	1
 **Step 6**: Getfasta
 
 For the remaining genomic loci mentioned above, each locus has a length of 200bp. For the prediction of each locus, we use a 1000bp DNA sequence around it. To facilitate the acquisition of this DNA sequence, we expand the upstream and downstream ranges of each locus by 400bp each (this operation only obtains a 1000bp DNA sequence, and the actual prediction range for each locus is still 200bp), and then use the getfasta function of the bedtools tool to obtain the base sequence. The provided code is "6.Getfasta.py"
+```python
+python 6.Getfasta.py
+```
 
 **Step 7**: Generating label matrix for Regression(L x C)
 
