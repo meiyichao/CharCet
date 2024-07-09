@@ -4,22 +4,24 @@ Incorporating Transcription Factors in Genome-wide Prediction of Chromatin Acces
  
  ![model](https://github.com/meiyichao/CharCet/blob/main/model.png)
  
- DeepCAGE contains a deep densely connected convolutional network and a joint module for incorporating TF gene expression and motif score.
+ CharCet is a hybrid neural network that includes a convolutional module for sequence data and a feedforward module for predicting chromatin accessibility.
  
  # Requirements
-- Keras==2.1.4
-- TensorFlow==1.13.1
-- hickle >= 2.1.0
+- torch(2.1.1)
+- scikit-learn(1.3.1)
+- pyfasta(0.5.2)
+- pandas(1.3.4)
+- numpy(1.23.5)
 
 # Installation
-DeepCAGE can be downloaded by
+CharCet can be downloaded by
 ```shell
-git clone https://github.com/kimmo1019/DeepCAGE
+git clone https://github.com/meiyichao/CharCet
 ```
 Installation has been tested in a Linux/MacOS platform.
 
 # Instructions
-We provide detailed step-by-step instructions for running DeepCAGE model including data preprocessing, model training, and model test.
+We provide detailed step-by-step instructions for running CharCet model including data preprocessing, model training, and model test.
 
 ## Data preprocessing
 **Step 1**: Download raw DNase-seq and RNA-seq data
