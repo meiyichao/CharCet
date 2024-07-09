@@ -94,9 +94,6 @@ FOLD_ID: cross validation fold id, from 1-19
 Sample_Ratio:Sample ratio for testing,from 0-1
 ```
 
-# License
-This project is licensed under the MIT License - see the LICENSE.md file for details
-
 
 
 
