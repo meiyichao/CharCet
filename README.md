@@ -30,7 +30,7 @@ python 1.Extracting_h5ad_file_information.py
 ```
 **Step 2**: Preprocess scRNA-seq data and generate expression matrix(C x N)
 
-We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg). The preprocessed expression matrix is as follows:
+We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).The format of the preprocessed expression matrix is as follows:
 ```
 	hvg_1	        hvg_2	        hvg_3	        ...     hvg_N
 1	0.006225735	-0.152664427	-0.254163005	...	-0.038108164
@@ -46,15 +46,15 @@ This step is a preliminary preprocessing of scATAC seq data. We provide "3.Gener
 
 We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open.The code we provide for this step is "4.bedtools_intersect_class.py"
 
-**Step 5**: Generating motif score matrix (L x N)
+**Step 5**: Generating label matrix for Classification(L x C)
 
-The motif score matrix size is `L x N` where L is the number of candidate regulatory loci and N is the number of the coresponding TFs.
-
-```python
-python 3.2.Generate_motif_score.py <PEAK_FILE> <MOTIF_FILE> <OUTPUT>
-PEAK_FILE: the generated union peak file in `Step 3` (e.g. `union.peaks.bed`)
-MOTIF_FILE: motif file in homer format
-OUTPUT: output motif score matrix file
+After obtaining the cell type-specific peaks mentioned above, we retained genomic loci with clear ATAC seq signals in at least one cell type for subsequent analysis. We provide "5.Generating_label_matrix_class.R" to generate the label matrix.The label matrix size is `L x C` where L is the number of candidate regulatory loci and C is the number of cell types.The format of the generated label matrix is as follows:
+```
+        	hvg_1   hvg_2   hvg_3   ...     hvg_N
+region_1	0	1	0	...	0
+region_2	1	1	0	...	1
+...     	...    	...    	...    	...  	...
+region_L	0	0	1	...	1
 ```
 **Step 6**: Generating label matrix (L x C)
 
