@@ -80,12 +80,12 @@ Sample_Ratio:Sample ratio for training,from 0-1
 ```python
 python Classification_test.py <FOLD_ID> <Sample_Ratio>
 FOLD_ID: cross validation fold id, from 1-19
-Sample_Ratio:Sample ratio for training,from 0-1
+Sample_Ratio:Sample ratio for testing,from 0-1
 ```
 ```python
 python Regression_test.py <FOLD_ID> <Sample_Ratio>
 FOLD_ID: cross validation fold id, from 1-19
-Sample_Ratio:Sample ratio for training,from 0-1
+Sample_Ratio:Sample ratio for testing,from 0-1
 ```
 
 # License
