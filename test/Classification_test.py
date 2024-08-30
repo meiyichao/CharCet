@@ -105,14 +105,15 @@ class MyModel(nn.Module):
 ################################## Model Evaluation##################################
 def model_evaluation(model, batch_size):
     start_time = time.time()
-    results_df = pd.DataFrame(columns=["region", 'cellid', 'Y_pred', 'Y_true'])
+    results_df = pd.DataFrame(columns=["region", 'cellid', 'Y_pred_0_prob',"Y_pred_1_prob","class_pred", 'Y_true'])
     region = []
 
+    # Split region into batches
     num_batches = math.ceil(len(region_idx) / batch_size)
     batch_indices = [(i * batch_size, min((i + 1) * batch_size, len(region_idx))) for i in range(num_batches)]
 
     for cellid in test_cell_idx:
-        results_batch_df = pd.DataFrame(columns=["region", 'cellid', 'Y_pred', 'Y_true'])
+        results_batch_df = pd.DataFrame(columns=["region", 'cellid', 'Y_pred_0_prob',"Y_pred_1_prob","class_pred", 'Y_true'])
         
         for batch_start, batch_end in batch_indices:
             batch_region = []
@@ -136,32 +137,40 @@ def model_evaluation(model, batch_size):
 
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
             model.eval()
-            Y_pred_list = []
+            Y_pred_0_prob_list = []
+            Y_pred_1_prob_list = []
+            class_pred_list = []
             with torch.no_grad():
                 X_batch_mat = X_test_mat.to(device)
                 X_batch_gexp = X_test_gexp.to(device)
                 Y_batch = Y_true.to(device)
 
                 Y_pred_batch = model(X_batch_mat, X_batch_gexp).squeeze().cpu()
-                Y_pred = Y_pred_batch.argmax(1)
-                Y_pred_list.append(Y_pred)
+                class_0_prob = Y_pred_batch[:, 0]
+                class_1_prob = Y_pred_batch[:, 1]
+                class_pred = Y_pred_batch.argmax(1)
+                #Y_pred_prob, Y_pred_indices = torch.max(Y_pred_batch, dim=1)
+                Y_pred_0_prob_list.append(class_0_prob)
+                Y_pred_1_prob_list.append(class_1_prob)
+                class_pred_list.append(class_pred)
 
-            Y_pred = torch.cat(Y_pred_list, dim=0)
+            class_0_prob = torch.cat(Y_pred_0_prob_list, dim=0)
+            class_1_prob = torch.cat(Y_pred_1_prob_list, dim=0)
+            class_pred = torch.cat(class_pred_list, dim=0)
 
-            Y_pred_numpy = Y_pred.numpy()
+            Y_pred_0_prob_numpy = class_0_prob.numpy()
+            Y_pred_1_prob_numpy = class_1_prob.numpy()
+            class_pred_numpy = class_pred.numpy()
+            
             Y_true_numpy = Y_true.squeeze().cpu().numpy()
-
             for i in range(batch_end - batch_start):
                 results_batch_df = results_batch_df.append(
-                    {'region': batch_region[i], 'cellid': cellid, 'Y_pred': Y_pred_numpy[i], 'Y_true': Y_true_numpy[i]},
+                    {'region': batch_region[i], 'cellid': cellid, 'Y_pred_0_prob': Y_pred_0_prob_numpy[i],'Y_pred_1_prob': Y_pred_1_prob_numpy[i], 'class_pred': class_pred_numpy[i],'Y_true': Y_true_numpy[i]},
                     ignore_index=True)
-
         results_df = pd.concat([results_df, results_batch_df], ignore_index=True)
-
-    results_df.to_csv('./fold%d_class_predict_results.csv' % (fold_idx), index=False)
-
+    results_df.to_csv('./%d.csv' % (fold_idx), index=False)
     end_time = time.time()
-    print("time consuming：" + str((end_time - start_time) / 60) + "min")
+    print("耗时：" + str((end_time - start_time) / 60) + "min")
     print('End testing...')
 
 if  __name__ == "__main__" :
