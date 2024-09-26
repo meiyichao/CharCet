@@ -2,7 +2,7 @@
  
  ![model](https://github.com/meiyichao/CharCet/blob/main/model.png)
  
- CharCet is a hybrid neural network that includes a convolutional module for sequence data and a feedforward module for predicting chromatin accessibility.
+ CharCet is a deep-learning framework that integrates DNA sequences and single-cell transcription data to predict chromatin accessibility.
  
  # Requirements
 - torch(2.1.1)
