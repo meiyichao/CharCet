@@ -181,7 +181,7 @@ if  __name__ == "__main__" :
     tf_gexp_norm = pd.read_csv(tf_gexp_file ,sep='\t',header=0,index_col=[0])
     label = pd.read_csv(label_file,sep='\t',header=0,index_col=[0])
     fold_idx = int(sys.argv[1])
-    ratio = float(sys.argv[2])
+    ratio = 1
     if ratio<0 or ratio>1: 
         print('Input ratio between 0 and 1')
         sys.exit()    
