@@ -39,7 +39,7 @@ This step is a preliminary preprocessing of scATAC seq data. We provide "Generat
 
 We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open.The code we provide for this step is "bedtools_intersect_class.py"
 ```python
-python bedtools_intersect_class.py
+python bedtools_intersect.py
 ```
 
 **Step 4**: Generating label matrix for Classification(L x C)
