@@ -56,7 +56,7 @@ region_L	0	0	1	...	1
 
 The generation of the label matrix for regression tasks is similar to that for classification tasks, and the label matrix can be generated through "bedtools_intersect.py" and "Generating_label_matrix_regress.R"
 
-## Model training and test
+## Model training
 
 We provide `Classification_model.py` and `Regression_model.py` for run CharCet in a classication and regression settings, respectively.
 ```python
