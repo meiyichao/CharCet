@@ -2,7 +2,7 @@ setwd("/home/ycmei/model_demo/data")
 Sys.setenv(LANGUAGE = "en")
 options(stringsAsFactors = FALSE,scipen = 999)
 rm(list = ls())
-
+ 
 library(Seurat)
 library(data.table)
 library(tidyverse)
