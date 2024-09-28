@@ -18,19 +18,12 @@ git clone https://github.com/meiyichao/CharCet
 ```
 
 # Instructions
-We provide detailed step-by-step instructions for running CharCet model including data preprocessing, model training, and model test.
+We provide detailed step-by-step instructions for running CharCet model including data preprocessing, model training, and model testing.
 
 ## Data preprocessing
-**Step 1**: Download scATAC-seq and scRNA-seq data annotated with cell types(h5ad files)
+**Step 1**: Preprocess scRNA-seq data and generate expression matrix(C x N)
 
-After downloading the data,We provide '1.Extracting_h5ad_file_information.py' to extract matrix(.csv) and metadata(.csv) information from the h5ad file,one can execute the following code to obtain the corresponding information.
-
-```python
-python 1.Extracting_h5ad_file_information.py
-```
-**Step 2**: Preprocess scRNA-seq data and generate expression matrix(C x N)
-
-We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).The format of the preprocessed expression matrix is as follows:
+We provide "Generation_expression_matrix.R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).The format of the preprocessed expression matrix is as follows:
 ```
 	hvg_1	        hvg_2	        hvg_3	        ...     hvg_N
 1	0.006225735	-0.152664427	-0.254163005	...	-0.038108164
@@ -38,20 +31,20 @@ We provide "2. Generation_expression_matrix. R" to preprocess scRNA seq data, wh
 ...	...     	...     	...     	...  	...
 19	-0.352929977	0.171524705	0.532515698	...	-0.065238186
 ```
-**Step 3**: Preprocess scATAC-seq data and obtain cell type-specific peaks
+**Step 2**: Preprocess scATAC-seq data and obtain cell type-specific peaks
 
-This step is a preliminary preprocessing of scATAC seq data. We provide "3.Generation_celltype_specific_packs.R" to obtain cell type-specific peaks. Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
+This step is a preliminary preprocessing of scATAC seq data. We provide "Generation_celltype_specific_packs.R" to obtain cell type-specific peaks. Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
 
-**Step 4**: Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval)
+**Step 3**: Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval)
 
-We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open.The code we provide for this step is "4.bedtools_intersect_class.py"
+We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open.The code we provide for this step is "bedtools_intersect_class.py"
 ```python
-python 4.bedtools_intersect_class.py
+python bedtools_intersect_class.py
 ```
 
-**Step 5**: Generating label matrix for Classification(L x C)
+**Step 4**: Generating label matrix for Classification(L x C)
 
-After obtaining the cell type-specific peaks mentioned above, we retained genomic loci with clear ATAC seq signals in at least one cell type for subsequent analysis. We provide "5.Generating_label_matrix_class.R" to generate the label matrix.The label matrix size is `L x C` where L is the number of candidate regulatory loci and C is the number of cell types.The format of the generated label matrix is as follows:
+After obtaining the cell type-specific peaks mentioned above, we retained genomic loci with clear ATAC seq signals in at least one cell type for subsequent analysis. We provide "Generating_label_matrix_class.R" to generate the label matrix.The label matrix size is `L x C` where L is the number of candidate regulatory loci and C is the number of cell types.The format of the generated label matrix is as follows:
 ```
         	1       2       3       ...     C
 region_1	0	1	0	...	0
@@ -59,44 +52,37 @@ region_2	1	1	0	...	1
 ...     	...    	...    	...    	...  	...
 region_L	0	0	1	...	1
 ```
-**Step 6**: Getfasta
+**Step 5**: Generating label matrix for Regression(L x C)
 
-For the remaining genomic loci mentioned above, each locus has a length of 200bp. For the prediction of each locus, we use a 1000bp DNA sequence around it. To facilitate the acquisition of this DNA sequence, we expand the upstream and downstream ranges of each locus by 400bp each (this operation only obtains a 1000bp DNA sequence, and the actual prediction range for each locus is still 200bp), and then use the getfasta function of the bedtools tool to obtain the base sequence. The provided code is "6.Getfasta.py"
-```python
-python 6.Getfasta.py
-```
-
-**Step 7**: Generating label matrix for Regression(L x C)
-
-The generation of the label matrix for regression tasks is similar to that for classification tasks, and the label matrix can be generated through "7.bedtools_intersect_regress.py" and "8.Generating_label_matrix_regress.R"
+The generation of the label matrix for regression tasks is similar to that for classification tasks, and the label matrix can be generated through "bedtools_intersect.py" and "Generating_label_matrix_regress.R"
 
 ## Model training and test
 
 We provide `Classification_model.py` and `Regression_model.py` for run CharCet in a classication and regression settings, respectively.
 ```python
-python Classification_model.py <FOLD_ID> <Sample_Ratio>
+python Classification_model.py <FOLD_ID> 
 FOLD_ID: cross validation fold id, from 1-19
-Sample_Ratio:Sample ratio for training,from 0-1
 ```
 ```python
-python Regression_model.py <FOLD_ID> <Sample_Ratio>
+python Regression_model.py <FOLD_ID> 
 FOLD_ID: cross validation fold id, from 1-19
-Sample_Ratio:Sample ratio for training,from 0-1
+```
+
+## Model testing
+
+We provide `Classification_test.py` and `Regression_test.py` for testing CharCet.
+```python
+python Classification_test.py <FOLD_ID> 
+FOLD_ID: cross validation fold id, from 1-19
 ```
 ```python
-python Classification_test.py <FOLD_ID> <Sample_Ratio>
+python Regression_test.py <FOLD_ID> 
 FOLD_ID: cross validation fold id, from 1-19
-Sample_Ratio:Sample ratio for testing,from 0-1
 ```
-```python
-python Regression_test.py <FOLD_ID> <Sample_Ratio>
-FOLD_ID: cross validation fold id, from 1-19
-Sample_Ratio:Sample ratio for testing,from 0-1
-```
+
 # Contact us
 
 **Yichao Mei**: meiyichao0121@163.com <br>
-**Ling-Ling Chen**: llchen@mail.hzau.edu.cn <br>
 **Junxiang Gao**: gao200@mail.hzau.edu.cn <br>
 
 
