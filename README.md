@@ -24,8 +24,10 @@ We provide detailed step-by-step instructions for running CharCet model includin
 **Step 1**: Preprocess scRNA-seq data and generate expression matrix(C x N)
 ```R
 Rscript Generation_expression_matrix.R <input_data_path> <ouput_data_path>
-功能：处理scRNA-seq数据，生成细胞类型的表达矩阵, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).
-<input_data_path>:输入数据目录。***The input_data_path structure is as follows:***
+<input_data_path>:输入数据目录
+<ouput_data_path>:输出数据目录
+```
+***The input_data_path structure is as follows:***
 The directory structure is as follows, which has three files. 这三个文件可由cellRanger工具处理原始单细胞测序数据得到 。barcode包含了细胞信息；features包含了基因信息；matrix包含了表达量计数信息。
 ```
 ├──input_data_path
@@ -35,10 +37,15 @@ The directory structure is as follows, which has three files. 这三个文件可
 …   …
 │   │
 ```
-<ouput_data_path>:输出数据目录
-
+***The ouput_data_path structure is as follows:***
+The directory structure is as follows, which has one file. 
 ```
-We provide "Generation_expression_matrix.R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).The format of the preprocessed expression matrix is as follows:
+├──ouput_data_path
+│   ├── final_express_matrix.txt
+…   …
+│   │
+```
+"Generation_expression_matrix.R"用于生成细胞类型的表达矩阵, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).The format of the preprocessed expression matrix is as follows:
 ```
 	hvg_1	        hvg_2	        hvg_3	        ...     hvg_N
 1	0.006225735	-0.152664427	-0.254163005	...	-0.038108164
@@ -46,7 +53,6 @@ We provide "Generation_expression_matrix.R" to preprocess scRNA seq data, where 
 ...	...     	...     	...     	...  	...
 19	-0.352929977	0.171524705	0.532515698	...	-0.065238186
 ```
-
 
 **Step 2**: Preprocess scATAC-seq data and obtain cell type-specific peaks
 
