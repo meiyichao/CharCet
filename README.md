@@ -33,26 +33,16 @@ We provide "Generation_expression_matrix.R" to preprocess scRNA seq data, where 
 ...	...     	...     	...     	...  	...
 19	-0.352929977	0.171524705	0.532515698	...	-0.065238186
 ```
-***The directory structure of input_data_path***
-The directory structure is as follows, which has two directories and three files. Directory “CharPlant/example” contains the reference genome and DNase-seq data of rice used as an example, file oryza_sativa.fa and ory_sativa.bed, respectively. The result of predicted OCRs is also saved in it. All the python and shell scripts are in directory “CharPlant/src”, but users generally don't need to care about it. 
+***The input_data_path structure is as follows:***
+The directory structure is as follows, which has three files. 这三个文件可由cellRanger工具处理原始单细胞测序数据得到 。barcode包含了细胞信息；features包含了基因信息；matrix包含了表达量计数信息。
 ```
-├──CharPlant
-│       ├── example
-│       │       ├──oryza_sativa.bed
-│       │       ├──oryza_sativa.fa
-│       ├── src 
-│       │       ├──data_preprocess
-│       │       ├──de_novo_prediction
-│       │       ├──get_positive_sample
-│       │       ├──model
-│       │       ├──motif
-…       …       …      …
-│       │       ├──submit_lsf
-│   ├── config.yaml
-│   ├── Snakefile 
-│   ├── CharPlant.sh
+├──input_data_path
+│   ├── barcodes.tsv.gz
+│   ├── features.tsv.gz 
+│   ├── matrix.mtx.gz
+…   …
+│   │
 ```
-
 
 **Step 2**: Preprocess scATAC-seq data and obtain cell type-specific peaks
 
