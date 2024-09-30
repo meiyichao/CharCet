@@ -35,8 +35,6 @@ The input_data_directory structure is as follows:
 │   ├── barcodes.tsv.gz
 │   ├── features.tsv.gz 
 │   ├── matrix.mtx.gz
-…   …
-│   │
 ```
 The directory structure has three files. These three files can be obtained by processing raw single-cell sequencing data using the cellRanger tool. Barcode contains cellular information; Features contain genes information; Matrix contains expression count information.
 
@@ -44,8 +42,6 @@ The output_data_directory structure is as follows:
 ```
 ├──output_data_path
 │   ├── final_exp_matrix.txt
-…   …
-│   │
 ```
 The directory structure has one file, which is "final_exp_matrix.txt". The size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).The format of the preprocessed expression matrix is as follows:
 ```
