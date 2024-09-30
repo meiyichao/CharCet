@@ -89,10 +89,15 @@ Considering that a cell type has many cells, for each peak of that cell type, if
 
 **Step 3**: Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval)
 
-We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open.The code we provide for this step is "bedtools_intersect.py"
+We provide 'bedtools_intersect.py' to Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval).
 ```python
-python bedtools_intersect.py
+python bedtools_intersect.py <input_data_directory> <output_data_directory>
+<input_data_directory>:input data directory
+<output_data_directory>:output data directory
 ```
+
+The 200bp non overlapping interval hg19 can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open.The code we provide for this step is "bedtools_intersect.py"
+
 
 **Step 4**: Generating label matrix for Classification(L x C)
 
