@@ -285,9 +285,9 @@ The format of the regression results is as follows:
 ```
         		1
 chr1:816400-817400	0.4860
-chr1:816600-817600	1.1356
+chr1:816600-817600	3.2389
 ...     		...
-chr22:50783800:50784800	3.2389
+chr22:50783800:50784800	0.7624
 ```
 
 # Contact us
