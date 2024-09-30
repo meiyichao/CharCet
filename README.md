@@ -54,9 +54,9 @@ The directory structure has one file, which is "final_exp_matrix.txt". The size 
 
 **Step 2**: Preprocess scATAC-seq data and obtain cell type-specific peaks
 
-We provide 'Generation_celltype_specific_packs.R' to preprocess scATAC-seq data and obtain cell type-specific peaks.
+We provide 'Generation_celltype_specific_peaks.R' to preprocess scATAC-seq data and obtain cell type-specific peaks.
 ```R
-Rscript Generation_celltype_specific_packs.R <input_data_directory> <output_data_directory>
+Rscript Generation_celltype_specific_peaks.R <input_data_directory> <output_data_directory>
 <input_data_directory>:input data directory
 <output_data_directory>:output data directory
 ```
@@ -85,7 +85,7 @@ chr1	 958518	   963388
 ...	 ...       ...    
 chr22	 50625295  50629340
 ```
-This step is a preliminary preprocessing of scATAC seq data. We provide "Generation_celltype_specific_packs.R" to obtain cell type-specific peaks. Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
+This step is a preliminary preprocessing of scATAC-seq data. We provide "Generation_celltype_specific_peaks.R" to obtain cell type-specific peaks. Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
 
 **Step 3**: Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval)
 
