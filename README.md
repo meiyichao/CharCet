@@ -91,7 +91,8 @@ Considering that a cell type has many cells, for each peak of that cell type, if
 
 We provide 'bedtools_intersect.py' to Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval).
 ```python
-python bedtools_intersect.py <input_data_directory> <output_data_directory>
+python bedtools_intersect.py <task> <input_data_directory> <output_data_directory>
+<task>:classification or regression
 <input_data_directory>:input data directory
 <output_data_directory>:output data directory
 ```
@@ -107,11 +108,18 @@ The input_data_directory structure is as follows:
 The output_data_directory structure is as follows:
 ```
 ├──output_data_directory
-│   ├── 1.bed
-│   ├── 2.bed
-│   ├── 3.bed
-…   …
-│   ├── n.bed
+│   ├── class
+│   	├── 1_class.bed
+│   	├── 2_class.bed
+│   	├── 3_class.bed
+…   	…
+│   	├── n_class.bed
+│   ├── regress
+│   	├── 1_regress.bed
+│   	├── 2_regress.bed
+│   	├── 3_regress.bed
+…   	…
+│   	├── n_regress.bed
 ```
 The 200bp non overlapping interval hg19 can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open. In this step, the output directory's bed file contains an additional column of open information compared to the input directory's bed file, and all loci have a length of 200bp. The format of the output directory's bed file is as follows:
 ```
@@ -133,11 +141,11 @@ Rscript Generating_label_matrix_class.R <input_data_directory> <output_data_dire
 The input_data_directory structure is as follows:
 ```
 ├──input_data_directory
-│   ├── 1.bed
-│   ├── 2.bed
-│   ├── 3.bed
+│   ├── 1_class.bed
+│   ├── 2_class.bed
+│   ├── 3_class.bed
 …   …
-│   ├── n.bed
+│   ├── n_class.bed
 ```
 The output_data_directory structure is as follows:
 ```
@@ -173,11 +181,11 @@ Rscript Generating_label_matrix_regress.R <input_data_directory> <output_data_di
 The input_data_directory structure is as follows:
 ```
 ├──input_data_directory
-│   ├── 1.bed
-│   ├── 2.bed
-│   ├── 3.bed
+│   ├── 1_regress.bed
+│   ├── 2_regress.bed
+│   ├── 3_regress.bed
 …   …
-│   ├── n.bed
+│   ├── n_regress.bed
 ```
 The output_data_directory structure is as follows:
 ```
@@ -245,11 +253,18 @@ The file 'Leave_one_out_crossnvalidation.txt' divides the cell types into traini
 The output_data_directory structure is as follows:
 ```
 ├──output_data_directory
-│   ├── 1.csv
-│   ├── 2.csv
-│   ├── 3.csv
-…   …
-│   ├── n.csv
+│   ├── class
+│   	├── 1_class.csv
+│   	├── 2_class.csv
+│   	├── 3_class.csv
+…   	…
+│   	├── n_class.csv
+│   ├── regress
+│   	├── 1_regress.csv
+│   	├── 2_regress.csv
+│   	├── 3_regress.csv
+…   	…
+│   	├── n_regress.csv
 ```
 Save the prediction results in a CSV file.
 
