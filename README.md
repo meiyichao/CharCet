@@ -147,11 +147,18 @@ The output_data_directory structure is as follows:
 ```
 After obtaining the bed file containing open information mentioned above, we retained genomic loci with clear ATAC-seq signals(locus is marked as "1") in at least one cell type for subsequent analysis. We provide "Generating_label_matrix_class.R" to generate the label matrix.The label matrix size is `L x C` where L is the number of candidate regulatory loci and C is the number of cell types.The format of the generated label matrix is as follows:
 ```
-        	1       2       3       ...     C
-region_1	0	1	0	...	0
-region_2	1	1	0	...	1
-...     	...    	...    	...    	...  	...
-region_L	0	0	1	...	1
+        		1       2       3       ...     C
+chr1:816400-817400	0	1	0	...	0
+chr1:816600-817600	1	1	0	...	1
+...     		...    	...    	...    	...  	...
+chr22:50783800:50784800	0	0	1	...	1
+```
+It should be noted that the row names of the label matrix are 1000bp long loci obtained by expanding 400bp upstream and downstream of 200bp long loci. For the extraction of DNA sequences of these 1000 bp long loci, we use the following code to generate:
+```
+bedtools getfasta -fi GRCh38.p14.genome.fa -bed union.peaks.bed -fo union.peaks.pad1k.fa
+<-fi>:reference genome
+<-bed>:the input bed file
+<-fo>:fasta file containing all 1000bp Loci sequences
 ```
 **Step 5**: Generating label matrix for Regression(L x C)
 
@@ -173,34 +180,18 @@ The input_data_directory structure is as follows:
 The output_data_directory structure is as follows:
 ```
 ├──output_data_directory
-│   ├── union.peaks.bed
 │   ├── union.peaks.labels.regress.txt
-```
-After obtaining the bed file containing open information mentioned above, we retained genomic loci with clear ATAC-seq signals(locus is marked as "1") in at least one cell type for subsequent analysis. We provide "Generating_label_matrix_regress.R" to generate the label matrix.The label matrix size is `L x C` where L is the number of candidate regulatory loci and C is the number of cell types.The format of the generated label matrix is as follows:
-```
-        		1       2       3       ...     C
-chr1:816400-817400	0	1	0	...	0
-chr1:816600-817600	1	1	0	...	1
-...     		...    	...    	...    	...  	...
-chr22:50783800:50784800	0	0	1	...	1
-```
-It should be noted that the row names of the label matrix are 1000bp long loci obtained by expanding 400bp upstream and downstream of 200bp long loci. For the extraction of DNA sequences of these 1000 bp long loci, we use the following code to generate:
-```
-bedtools getfasta -fi GRCh38.p14.genome.fa -bed union.peaks.bed -fo union.peaks.pad1k.fa
-<-fi>:reference genome
-<-bed>:the input bed file
-<-fo>:fasta file containing all 1000bp Loci sequences
 ```
 
 ## Model training
 
 We provide `Classification_model.py` and `Regression_model.py` for run CharCet in a classication and regression settings, respectively.
 ```python
-python Classification_model.py <FOLD_ID> 
+python Classification_model.py <FOLD_ID> <input_data_directory> <output_data_directory>
 FOLD_ID: cross validation fold id, from 1-19
 ```
 ```python
-python Regression_model.py <FOLD_ID> 
+python Regression_model.py <FOLD_ID> <input_data_directory> <output_data_directory>
 FOLD_ID: cross validation fold id, from 1-19
 ```
 
@@ -208,12 +199,16 @@ FOLD_ID: cross validation fold id, from 1-19
 
 We provide `Classification_test.py` and `Regression_test.py` for testing CharCet.
 ```python
-python Classification_test.py <FOLD_ID> 
+python Classification_test.py <FOLD_ID> <input_data_directory> <output_data_directory>
 FOLD_ID: cross validation fold id, from 1-19
+<input_data_directory>:input data directory
+<output_data_directory>:output data directory
 ```
 ```python
-python Regression_test.py <FOLD_ID> 
+python Regression_test.py <FOLD_ID> <input_data_directory> <output_data_directory>
 FOLD_ID: cross validation fold id, from 1-19
+<input_data_directory>:input data directory
+<output_data_directory>:output data directory
 ```
 
 # Contact us
