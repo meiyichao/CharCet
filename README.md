@@ -22,24 +22,25 @@ We provide detailed step-by-step instructions for running CharCet model includin
 
 ## Data preprocessing
 **Step 1**: Preprocess scRNA-seq data and generate expression matrix(C x N)
-我们提供了"Generation_expression_matrix.R"用于生成细胞类型的表达矩阵
+
+We provide 'GenerationExpression_matrix.R' for generating expression matrices of cell types.
 ```R
-Rscript Generation_expression_matrix.R <input_data_path> <ouput_data_path>
-<input_data_path>:输入数据目录
-<ouput_data_path>:输出数据目录
+Rscript Generation_expression_matrix.R <input_data_directory> <ouput_data_directory>
+<input_data_directory>:input data directory
+<ouput_data_directory>:ouput data directory
 ```
-The input_data_path structure is as follows:
+The input_data_directory structure is as follows:
 ```
-├──input_data_path
+├──input_data_directory
 │   ├── barcodes.tsv.gz
 │   ├── features.tsv.gz 
 │   ├── matrix.mtx.gz
 …   …
 │   │
 ```
-The directory structure has three files. 这三个文件可由cellRanger工具处理原始单细胞测序数据得到 。barcode包含了细胞信息；features包含了基因信息；matrix包含了表达量计数信息。
+The directory structure has three files. These three files can be obtained by processing raw single-cell sequencing data using the cellRanger tool. Barcode contains cellular information; Features contain gene information; Matrix contains expression count information.
 
-The ouput_data_path structure is as follows:
+The ouput_data_directory structure is as follows:
 ```
 ├──ouput_data_path
 │   ├── final_express_matrix.txt
