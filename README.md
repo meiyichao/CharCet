@@ -71,21 +71,21 @@ The directory structure has three files. These three files can be obtained by pr
 
 The output_data_directory structure is as follows:
 ```
-├──output_data_path
+├──output_data_directory
 │   ├── 1.bed
 │   ├── 2.bed
 │   ├── 3.bed
 …   …
 │   ├── n.bed
 ```
-The directory structure has n files, "n" is the number of cell types.The format of the bed file is as follows:
+The directory structure has n files, "n" is the number of cell types. The format of the bed file is as follows:
 ```
 chr1	 903617	   907386
 chr1	 958518	   963388
 ...	 ...       ...    
 chr22	 50625295  50629340
 ```
-This step is a preliminary preprocessing of scATAC-seq data. We provide "Generation_celltype_specific_peaks.R" to obtain cell type-specific peaks. Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
+Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
 
 **Step 3**: Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval)
 
