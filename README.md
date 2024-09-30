@@ -22,7 +22,9 @@ We provide detailed step-by-step instructions for running CharCet model includin
 
 ## Data preprocessing
 **Step 1**: Preprocess scRNA-seq data and generate expression matrix(C x N)
-
+```R
+Rscript Generation_expression_matrix.R -i <input_data_path> -o <ouput_data_path>
+```
 We provide "Generation_expression_matrix.R" to preprocess scRNA seq data, where the size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).The format of the preprocessed expression matrix is as follows:
 ```
 	hvg_1	        hvg_2	        hvg_3	        ...     hvg_N
