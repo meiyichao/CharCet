@@ -43,11 +43,11 @@ The directory structure has three files. These three files can be obtained by pr
 The output_data_directory structure is as follows:
 ```
 ├──output_data_path
-│   ├── final_express_matrix.txt
+│   ├── final_exp_matrix.txt
 …   …
 │   │
 ```
-The directory structure has one file, which is "final_express_matrix.txt". The size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).The format of the preprocessed expression matrix is as follows:
+The directory structure has one file, which is "final_exp_matrix.txt". The size of the expression matrix is C x N, where C represents the number of cell types and N represents the number of highly variable genes(hvg).The format of the preprocessed expression matrix is as follows:
 ```
 	hvg_1	        hvg_2	        hvg_3	        ...     hvg_N
 1	0.006225735	-0.152664427	-0.254163005	...	-0.038108164
