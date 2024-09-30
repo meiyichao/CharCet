@@ -124,7 +124,7 @@ chr22	 35922000  35922200    1
 
 **Step 4**: Generating label matrix for Classification(L x C)
 
-We provide "Generating_label_matrix_class.R" to generate the label matrix.
+We provide "Generating_label_matrix_class.R" to generate the label matrix of classification task.
 ```R
 Rscript Generating_label_matrix_class.R <input_data_directory> <output_data_directory>
 <input_data_directory>:input data directory
@@ -155,7 +155,42 @@ region_L	0	0	1	...	1
 ```
 **Step 5**: Generating label matrix for Regression(L x C)
 
-The generation of the label matrix for regression tasks is similar to that for classification tasks, and the label matrix can be generated through "bedtools_intersect.py" and "Generating_label_matrix_regress.R"
+We provide "Generating_label_matrix_regress.R" to generate the label matrix of regression task.
+```R
+Rscript Generating_label_matrix_regress.R <input_data_directory> <output_data_directory>
+<input_data_directory>:input data directory
+<output_data_directory>:output data directory
+```
+The input_data_directory structure is as follows:
+```
+├──input_data_directory
+│   ├── 1.bed
+│   ├── 2.bed
+│   ├── 3.bed
+…   …
+│   ├── n.bed
+```
+The output_data_directory structure is as follows:
+```
+├──output_data_directory
+│   ├── union.peaks.bed
+│   ├── union.peaks.labels.regress.txt
+```
+After obtaining the bed file containing open information mentioned above, we retained genomic loci with clear ATAC-seq signals(locus is marked as "1") in at least one cell type for subsequent analysis. We provide "Generating_label_matrix_regress.R" to generate the label matrix.The label matrix size is `L x C` where L is the number of candidate regulatory loci and C is the number of cell types.The format of the generated label matrix is as follows:
+```
+        		1       2       3       ...     C
+chr1:816400-817400	0	1	0	...	0
+chr1:816600-817600	1	1	0	...	1
+...     		...    	...    	...    	...  	...
+chr22:50783800:50784800	0	0	1	...	1
+```
+It should be noted that the row names of the label matrix are 1000bp long loci obtained by expanding 400bp upstream and downstream of 200bp long loci. For the extraction of DNA sequences of these 1000 bp long loci, we use the following code to generate:
+```
+bedtools getfasta -fi GRCh38.p14.genome.fa -bed union.peaks.bed -fo union.peaks.pad1k.fa
+<-fi>:reference genome
+<-bed>:the input bed file
+<-fo>:fasta file containing all 1000bp Loci sequences
+```
 
 ## Model training
 
