@@ -33,6 +33,27 @@ We provide "Generation_expression_matrix.R" to preprocess scRNA seq data, where 
 ...	...     	...     	...     	...  	...
 19	-0.352929977	0.171524705	0.532515698	...	-0.065238186
 ```
+***The directory structure of input_data_path***
+The directory structure is as follows, which has two directories and three files. Directory “CharPlant/example” contains the reference genome and DNase-seq data of rice used as an example, file oryza_sativa.fa and ory_sativa.bed, respectively. The result of predicted OCRs is also saved in it. All the python and shell scripts are in directory “CharPlant/src”, but users generally don't need to care about it. 
+```
+├──CharPlant
+│       ├── example
+│       │       ├──oryza_sativa.bed
+│       │       ├──oryza_sativa.fa
+│       ├── src 
+│       │       ├──data_preprocess
+│       │       ├──de_novo_prediction
+│       │       ├──get_positive_sample
+│       │       ├──model
+│       │       ├──motif
+…       …       …      …
+│       │       ├──submit_lsf
+│   ├── config.yaml
+│   ├── Snakefile 
+│   ├── CharPlant.sh
+```
+
+
 **Step 2**: Preprocess scATAC-seq data and obtain cell type-specific peaks
 
 This step is a preliminary preprocessing of scATAC seq data. We provide "Generation_celltype_specific_packs.R" to obtain cell type-specific peaks. Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
