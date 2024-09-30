@@ -160,6 +160,8 @@ bedtools getfasta -fi GRCh38.p14.genome.fa -bed union.peaks.bed -fo union.peaks.
 <-bed>:the input bed file
 <-fo>:fasta file containing all 1000bp Loci sequences
 ```
+The output file of the above code is "union.peaks.pad1k.fa"
+
 **Step 5**: Generating label matrix for Regression(L x C)
 
 We provide "Generating_label_matrix_regress.R" to generate the label matrix of regression task.
@@ -189,12 +191,31 @@ We provide `Classification_model.py` and `Regression_model.py` for run CharCet i
 ```python
 python Classification_model.py <FOLD_ID> <input_data_directory> <output_data_directory>
 FOLD_ID: cross validation fold id, from 1-19
+<input_data_directory>:input data directory
+<output_data_directory>:output data directory
 ```
 ```python
 python Regression_model.py <FOLD_ID> <input_data_directory> <output_data_directory>
 FOLD_ID: cross validation fold id, from 1-19
+<input_data_directory>:input data directory
+<output_data_directory>:output data directory
 ```
+The input_data_directory structure is as follows:
+```
+├──input_data_directory
+│   ├── final_exp_matrix.txt
+│   ├── union.peaks.labels.class.txt
+│   ├── union.peaks.labels.regress.txt
+│   ├── union.peaks.pad1k.fa
+│   ├── Leave_one_out_cross_validation.txt
+```
+The file 'Leave_one_out_crossnvalidation.txt' divides the cell types into training and testing sets based on leave one cross validation. The file has been provided in the train folder.
 
+The output_data_directory structure is as follows:
+```
+├──output_data_directory
+│   ├── model.pth
+```
 ## Model testing
 
 We provide `Classification_test.py` and `Regression_test.py` for testing CharCet.
@@ -209,6 +230,44 @@ python Regression_test.py <FOLD_ID> <input_data_directory> <output_data_director
 FOLD_ID: cross validation fold id, from 1-19
 <input_data_directory>:input data directory
 <output_data_directory>:output data directory
+```
+The input_data_directory structure is as follows:
+```
+├──input_data_directory
+│   ├── final_exp_matrix.txt
+│   ├── union.peaks.labels.class.txt
+│   ├── union.peaks.labels.regress.txt
+│   ├── union.peaks.pad1k.fa
+│   ├── Leave_one_out_cross_validation.txt
+```
+The file 'Leave_one_out_crossnvalidation.txt' divides the cell types into training and testing sets based on leave one cross validation. The file has been provided in the train folder.
+
+The output_data_directory structure is as follows:
+```
+├──output_data_directory
+│   ├── 1.csv
+│   ├── 2.csv
+│   ├── 3.csv
+…   …
+│   ├── n.csv
+```
+Save the prediction results in a CSV file.
+
+The format of the classification results is as follows.
+```
+        		1
+chr1:816400-817400	0
+chr1:816600-817600	1
+...     		...
+chr22:50783800:50784800	0
+```
+The format of the regression results is as follows.
+```
+        		1
+chr1:816400-817400	0.4860
+chr1:816600-817600	1.1356
+...     		...
+chr22:50783800:50784800	3.2389
 ```
 
 # Contact us
