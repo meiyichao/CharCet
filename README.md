@@ -220,10 +220,11 @@ The input_data_directory structure is as follows:
 The file 'Leave_one_out_crossnvalidation.txt' divides the cell types into training and testing sets based on leave one cross validation. The file has been provided in the train folder.
 
 The output_data_directory structure is as follows:
-```
-├──output_data_directory
-│   ├── model.pth
-```
+│   ├── class
+│   	├── model.pth
+│   ├── regress
+│   	├── model.pth
+
 ## Model testing
 
 We provide `Classification_test.py` and `Regression_test.py` for testing CharCet.
