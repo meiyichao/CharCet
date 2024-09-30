@@ -25,9 +25,9 @@ We provide detailed step-by-step instructions for running CharCet model includin
 
 We provide 'GenerationExpression_matrix.R' for generating expression matrices of cell types.
 ```R
-Rscript Generation_expression_matrix.R <input_data_directory> <ouput_data_directory>
+Rscript Generation_expression_matrix.R <input_data_directory> <output_data_directory>
 <input_data_directory>:input data directory
-<ouput_data_directory>:ouput data directory
+<output_data_directory>:output data directory
 ```
 The input_data_directory structure is as follows:
 ```
@@ -40,9 +40,9 @@ The input_data_directory structure is as follows:
 ```
 The directory structure has three files. These three files can be obtained by processing raw single-cell sequencing data using the cellRanger tool. Barcode contains cellular information; Features contain gene information; Matrix contains expression count information.
 
-The ouput_data_directory structure is as follows:
+The output_data_directory structure is as follows:
 ```
-├──ouput_data_path
+├──output_data_path
 │   ├── final_express_matrix.txt
 …   …
 │   │
