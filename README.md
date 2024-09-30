@@ -36,7 +36,7 @@ The input_data_directory structure is as follows:
 │   ├── features.tsv.gz 
 │   ├── matrix.mtx.gz
 ```
-The directory structure has three files. These three files can be obtained by processing raw single-cell sequencing data using the cellRanger tool. Barcode contains cellular information; Features contain genes information; Matrix contains expression count information.
+The directory structure has three files. These three files can be obtained by processing raw single-cell sequencing data using the [cellRanger](https://www.10xgenomics.com/support/software/cell-ranger/latest) tool. Barcode contains cellular information; Features contain genes information; Matrix contains expression count information.
 
 The output_data_directory structure is as follows:
 ```
