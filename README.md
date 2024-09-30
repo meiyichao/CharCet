@@ -253,7 +253,7 @@ The output_data_directory structure is as follows:
 ```
 Save the prediction results in a CSV file.
 
-The format of the classification results is as follows.
+The format of the classification results is as follows:
 ```
         		1
 chr1:816400-817400	0
@@ -261,7 +261,7 @@ chr1:816600-817600	1
 ...     		...
 chr22:50783800:50784800	0
 ```
-The format of the regression results is as follows.
+The format of the regression results is as follows:
 ```
         		1
 chr1:816400-817400	0.4860
