@@ -95,13 +95,57 @@ python bedtools_intersect.py <input_data_directory> <output_data_directory>
 <input_data_directory>:input data directory
 <output_data_directory>:output data directory
 ```
-
-The 200bp non overlapping interval hg19 can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open.The code we provide for this step is "bedtools_intersect.py"
-
+The input_data_directory structure is as follows:
+```
+├──input_data_directory
+│   ├── 1.bed
+│   ├── 2.bed
+│   ├── 3.bed
+…   …
+│   ├── n.bed
+```
+The output_data_directory structure is as follows:
+```
+├──output_data_directory
+│   ├── 1.bed
+│   ├── 2.bed
+│   ├── 3.bed
+…   …
+│   ├── n.bed
+```
+The 200bp non overlapping interval hg19 can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open. In this step, the output directory's bed file contains an additional column of open information compared to the input directory's bed file, and all loci have a length of 200bp. The format of the output directory's bed file is as follows:
+```
+chr1	 0	   200	       0
+chr1	 200	   400         0
+...	 ...       ...         ...  
+chr22	 35922000  35922200    1
+...	 ...       ...         ...
+```
 
 **Step 4**: Generating label matrix for Classification(L x C)
 
-After obtaining the cell type-specific peaks mentioned above, we retained genomic loci with clear ATAC seq signals in at least one cell type for subsequent analysis. We provide "Generating_label_matrix_class.R" to generate the label matrix.The label matrix size is `L x C` where L is the number of candidate regulatory loci and C is the number of cell types.The format of the generated label matrix is as follows:
+We provide "Generating_label_matrix_class.R" to generate the label matrix.
+```R
+Rscript Generating_label_matrix_class.R <input_data_directory> <output_data_directory>
+<input_data_directory>:input data directory
+<output_data_directory>:output data directory
+```
+The input_data_directory structure is as follows:
+```
+├──input_data_directory
+│   ├── 1.bed
+│   ├── 2.bed
+│   ├── 3.bed
+…   …
+│   ├── n.bed
+```
+The output_data_directory structure is as follows:
+```
+├──output_data_directory
+│   ├── union.peaks.bed
+│   ├── union.peaks.labels.class.txt
+```
+After obtaining the bed file containing open information mentioned above, we retained genomic loci with clear ATAC-seq signals(locus is marked as "1") in at least one cell type for subsequent analysis. We provide "Generating_label_matrix_class.R" to generate the label matrix.The label matrix size is `L x C` where L is the number of candidate regulatory loci and C is the number of cell types.The format of the generated label matrix is as follows:
 ```
         	1       2       3       ...     C
 region_1	0	1	0	...	0
