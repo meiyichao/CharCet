@@ -28,7 +28,7 @@ Rscript Generation_expression_matrix.R <input_data_path> <ouput_data_path>
 <input_data_path>:输入数据目录
 <ouput_data_path>:输出数据目录
 ```
-***The input_data_path structure is as follows:***
+The input_data_path structure is as follows:
 ```
 ├──input_data_path
 │   ├── barcodes.tsv.gz
@@ -39,7 +39,7 @@ Rscript Generation_expression_matrix.R <input_data_path> <ouput_data_path>
 ```
 The directory structure has three files. 这三个文件可由cellRanger工具处理原始单细胞测序数据得到 。barcode包含了细胞信息；features包含了基因信息；matrix包含了表达量计数信息。
 
-***The ouput_data_path structure is as follows:***
+The ouput_data_path structure is as follows:
 ```
 ├──ouput_data_path
 │   ├── final_express_matrix.txt
