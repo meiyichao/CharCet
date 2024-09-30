@@ -22,7 +22,7 @@ We provide detailed step-by-step instructions for running CharCet model includin
 
 ## Data preprocessing
 **Step 1**: Preprocess scRNA-seq data and generate expression matrix(C x N)
-"Generation_expression_matrix.R"用于生成细胞类型的表达矩阵
+我们提供了"Generation_expression_matrix.R"用于生成细胞类型的表达矩阵
 ```R
 Rscript Generation_expression_matrix.R <input_data_path> <ouput_data_path>
 <input_data_path>:输入数据目录
