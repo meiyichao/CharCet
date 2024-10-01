@@ -164,6 +164,7 @@ The input_data_directory structure is as follows:
 │   ├── 3_class.bed
 …   …
 │   ├── n_class.bed
+│   ├── whole_genome_200bp.bed
 ```
 The output_data_directory structure is as follows:
 ```
@@ -204,6 +205,7 @@ The input_data_directory structure is as follows:
 │   ├── 3_regress.bed
 …   …
 │   ├── n_regress.bed
+│   ├── whole_genome_200bp.bed
 ```
 The output_data_directory structure is as follows:
 ```
