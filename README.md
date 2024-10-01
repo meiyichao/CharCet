@@ -227,11 +227,18 @@ Rscript Generating_label_matrix_regress.R <input_data_directory> <output_data_di
 The input_data_directory structure is as follows:
 ```
 ├──input_data_directory
-│   ├── 1_regression.bed
-│   ├── 2_regression.bed
-│   ├── 3_regression.bed
-…   …
-│   ├── n_regression.bed
+│   ├── regress
+│   	├── 1_regress.bed
+│   	├── 2_regress.bed
+│   	├── 3_regress.bed
+…   	…
+│   	├── n_regress.bed
+│   ├── regression
+│   	├── 1_regression.bed
+│   	├── 2_regression.bed
+│   	├── 3_regression.bed
+…   	…
+│   	├── n_regression.bed
 │   ├── whole_genome_200bp.bed
 ```
 The output_data_directory structure is as follows:
