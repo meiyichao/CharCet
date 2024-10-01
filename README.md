@@ -139,6 +139,15 @@ chr22	 35922000  35922200    1
 ...	 ...       ...         ...
 ```
 
+Regression:
+```
+chr1	 0	   200	       0
+chr1	 200	   400         0
+...	 ...       ...         ...  
+chr22	 35922000  35922200    2.7982
+...	 ...       ...         ...
+```
+
 **Step 4**: Generating label matrix for Classification(L x C)
 
 We provide "Generating_label_matrix_class.R" to generate the label matrix of classification task.
