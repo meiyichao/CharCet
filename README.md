@@ -110,6 +110,7 @@ The input_data_directory structure is as follows:
 │   ├── 3.bed
 …   …
 │   ├── n.bed
+│   ├── whole_genome_200bp.bed
 ```
 The output_data_directory structure is as follows:
 ```
@@ -127,7 +128,7 @@ The output_data_directory structure is as follows:
 …   	…
 │   	├── n_regress.bed
 ```
-The 200bp non overlapping interval hg19 can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open. In this step, the output directory's bed file contains an additional column of open information compared to the input directory's bed file, and all loci have a length of 200bp. The format of the output directory's bed file is as follows:
+"whole_genome_200bp.bed" can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval), and the mapped region is marked as "1", indicating that it is open. In this step, the output directory's bed file contains an additional column of open information compared to the input directory's bed file, and all loci have a length of 200bp. The format of the output directory's bed file is as follows:
 ```
 chr1	 0	   200	       0
 chr1	 200	   400         0
