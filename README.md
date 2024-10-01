@@ -81,43 +81,6 @@ The ATAC_seurat.rds file in the input folder is a seurat object constructed from
 The output_data_directory structure is as follows:
 ```
 ├──output_data_directory
-│   ├── 1.bed
-│   ├── 2.bed
-│   ├── 3.bed
-…   …
-│   ├── n.bed
-```
-The directory structure has n files, "n" is the number of cell types. The format of the bed file is as follows:
-```
-chr1	 903617	   907386
-chr1	 958518	   963388
-...	 ...       ...    
-chr22	 50625295  50629340
-```
-Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis.
-
-**Step 3**: Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval)
-
-We provide 'bedtools_intersect.py' to Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval).
-```python
-python bedtools_intersect.py <task> <input_data_directory> <output_data_directory>
-<task>:classification or regression
-<input_data_directory>:input data directory
-<output_data_directory>:output data directory
-```
-The input_data_directory structure is as follows:
-```
-├──input_data_directory
-│   ├── 1.bed
-│   ├── 2.bed
-│   ├── 3.bed
-…   …
-│   ├── n.bed
-│   ├── whole_genome_200bp.bed
-```
-The output_data_directory structure is as follows:
-```
-├──output_data_directory
 │   ├── class
 │   	├── 1_class.bed
 │   	├── 2_class.bed
@@ -131,7 +94,68 @@ The output_data_directory structure is as follows:
 …   	…
 │   	├── n_regress.bed
 ```
-"whole_genome_200bp.bed" can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval). For classification tasks, the mapped region is marked as "1", indicating that it is open. For classification tasks, the mapped region is marked as "1", indicating that it is open. For regression tasks, the mapped region is marked as the accessibility level, which is derived from the average accessibility value of all cells in the corresponding cell population for that region. In this step, the output directory's bed file contains an additional column of open information compared to the input directory's bed file, and all loci have a length of 200bp. The format of the output directory's bed file is as follows:
+"n" is the number of cell types. The format of the bed file is as follows:
+
+Class:
+```
+chr1	 903617	   907386
+chr1	 958518	   963388
+...	 ...       ...    
+chr22	 50625295  50629340
+```
+
+Regress:
+```
+chr1	 903617	   907386      0.3421
+chr1	 958518	   963388      0.7865
+...	 ...       ...         ...
+chr22	 50625295  50629340    2.3342
+```
+Considering that a cell type has many cells, for each peak of that cell type, if at least 1/5 of the cells have open signals on that peak, the peak is considered chromatin accessible and retained, otherwise inaccessible and filtered. The obtained cell type specific peaks are used for subsequent analysis. The regression bed file contains an additional column of open information compared to the classification bed file, which is derived from the average accessibility value of all cells in the corresponding cell population for that region.
+
+**Step 3**: Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval)
+
+We provide 'bedtools_intersect.py' to Map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval).
+```python
+python bedtools_intersect.py <task> <input_data_directory> <output_data_directory>
+<task>:classification or regression
+<input_data_directory>:input data directory
+<output_data_directory>:output data directory
+```
+The input_data_directory structure is as follows:
+```
+├──input_data_directory
+│   ├── class
+│   	├── 1_class.bed
+│   	├── 2_class.bed
+│   	├── 3_class.bed
+…   	…
+│   	├── n_class.bed
+│   ├── regress
+│   	├── 1_regress.bed
+│   	├── 2_regress.bed
+│   	├── 3_regress.bed
+…   	…
+│   	├── n_regress.bed
+│   ├── whole_genome_200bp.bed
+```
+The output_data_directory structure is as follows:
+```
+├──output_data_directory
+│   ├── class
+│   	├── 1_classification.bed
+│   	├── 2_classification.bed
+│   	├── 3_classification.bed
+…   	…
+│   	├── n_classification.bed
+│   ├── regress
+│   	├── 1_regression.bed
+│   	├── 2_regression.bed
+│   	├── 3_regression.bed
+…   	…
+│   	├── n_regression.bed
+```
+"whole_genome_200bp.bed" can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval). For classification tasks, the mapped region is marked as "1", indicating that it is open. For classification tasks, the mapped region is marked as "1", indicating that it is open. For regression tasks, the mapped region is marked as the accessibility level, which is derived from the average accessibility value of all cells in the corresponding cell population for that region. The format of the output directory's bed file is as follows:
 
 Classification:
 ```
@@ -162,11 +186,11 @@ Rscript Generating_label_matrix_class.R <input_data_directory> <output_data_dire
 The input_data_directory structure is as follows:
 ```
 ├──input_data_directory
-│   ├── 1_class.bed
-│   ├── 2_class.bed
-│   ├── 3_class.bed
+│   ├── 1_classification.bed
+│   ├── 2_classification.bed
+│   ├── 3_classification.bed
 …   …
-│   ├── n_class.bed
+│   ├── n_classification.bed
 │   ├── whole_genome_200bp.bed
 ```
 The output_data_directory structure is as follows:
@@ -203,11 +227,11 @@ Rscript Generating_label_matrix_regress.R <input_data_directory> <output_data_di
 The input_data_directory structure is as follows:
 ```
 ├──input_data_directory
-│   ├── 1_regress.bed
-│   ├── 2_regress.bed
-│   ├── 3_regress.bed
+│   ├── 1_regression.bed
+│   ├── 2_regression.bed
+│   ├── 3_regression.bed
 …   …
-│   ├── n_regress.bed
+│   ├── n_regression.bed
 │   ├── ATAC_seurat.rds
 │   ├── whole_genome_200bp.bed
 ```
