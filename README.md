@@ -20,6 +20,7 @@
 - dplyr(1.1.3)
 - gtools(3.9.4)
 - Matrix(1.6.5)
+- data.table(1.14.8)
 
 # Installation
 CharCet can be downloaded by
