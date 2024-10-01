@@ -20,6 +20,9 @@ git clone https://github.com/meiyichao/CharCet
 # Instructions
 We provide detailed step-by-step instructions for running CharCet model including data preprocessing, model training, and model testing.
 
+# Note 
+The datasets used in this study are all single-cell multi omics datasets (scRNA-seq + scATAC-seq).
+
 ## Data preprocessing
 **Step 1**: Preprocess scRNA-seq data and generate expression matrix(C x N)
 
@@ -32,11 +35,9 @@ Rscript Generation_expression_matrix.R <input_data_directory> <output_data_direc
 The input_data_directory structure is as follows:
 ```
 ├──input_data_directory
-│   ├── barcodes.tsv.gz
-│   ├── features.tsv.gz 
-│   ├── matrix.mtx.gz
+│   ├── RNA_seurat.rds
 ```
-The directory structure has three files. These three files can be obtained by processing raw single-cell sequencing data using the [cellRanger](https://www.10xgenomics.com/support/software/cell-ranger/latest) tool. Barcode contains cellular information; Features contain genes information; Matrix contains expression count information.
+The RNA_seurat.rds file in the input folder is a seurat object constructed from scRNA-seq with annotated cell types. Please ensure that you have such a file before starting.
 
 The output_data_directory structure is as follows:
 ```
@@ -63,11 +64,9 @@ Rscript Generation_celltype_specific_peaks.R <input_data_directory> <output_data
 The input_data_directory structure is as follows:
 ```
 ├──input_data_directory
-│   ├── barcodes.tsv.gz
-│   ├── features.tsv.gz 
-│   ├── matrix.mtx.gz
+│   ├── ATAC_seurat.rds
 ```
-The directory structure has three files. These three files can be obtained by processing raw single-cell sequencing data using the cellRanger tool. Barcode contains cellular information; Features contain peaks information; Matrix contains count information.
+The ATAC_seurat.rds file in the input folder is a seurat object constructed from scATAC-seq with annotated cell types. Please ensure that you have such a file before starting.
 
 The output_data_directory structure is as follows:
 ```
