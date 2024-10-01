@@ -232,7 +232,6 @@ The input_data_directory structure is as follows:
 │   ├── 3_regression.bed
 …   …
 │   ├── n_regression.bed
-│   ├── ATAC_seurat.rds
 │   ├── whole_genome_200bp.bed
 ```
 The output_data_directory structure is as follows:
