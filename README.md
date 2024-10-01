@@ -308,7 +308,7 @@ The input_data_directory structure is as follows:
 │   ├── class_model.pth
 │   ├── regress_model.pth
 ```
-The file 'Leave_one_out_crossnvalidation.txt' divides the cell types into training and testing sets based on leave one cross validation. The file has been provided in the train folder.
+The file 'Leave_one_out_crossnvalidation.txt' divides the cell types into training and testing sets based on leave one cross validation. The file has been provided in the "train" folder.
 
 The output_data_directory structure is as follows:
 ```
