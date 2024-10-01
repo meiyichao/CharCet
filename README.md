@@ -208,6 +208,7 @@ The input_data_directory structure is as follows:
 │   ├── 3_regress.bed
 …   …
 │   ├── n_regress.bed
+│   ├── ATAC_seurat.rds
 │   ├── whole_genome_200bp.bed
 ```
 The output_data_directory structure is as follows:
