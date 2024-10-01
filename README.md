@@ -16,12 +16,11 @@ CharCet can be downloaded by
 ```shell
 git clone https://github.com/meiyichao/CharCet
 ```
+# Note 
+The datasets used in this study are all single-cell multi omics datasets (scRNA-seq + scATAC-seq).
 
 # Instructions
 We provide detailed step-by-step instructions for running CharCet model including data preprocessing, model training, and model testing.
-
-# Note 
-The datasets used in this study are all single-cell multi omics datasets (scRNA-seq + scATAC-seq).
 
 ## Data preprocessing
 **Step 1**: Preprocess scRNA-seq data and generate expression matrix(C x N)
