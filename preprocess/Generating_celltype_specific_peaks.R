@@ -60,7 +60,7 @@ for (cell_type in names(peak_celltypes_filtered)) {
   peak_celltypes_filtered[[cell_type]]$start <- as.character(start)
   peak_celltypes_filtered[[cell_type]]$end <- as.character(end)
   peak_celltypes_filtered[[cell_type]][,1] <- NULL
-  write.table(peak_celltypes_filtered[[cell_type]], file = paste("./output_dir/class",i,"_class.bed",sep = ""),sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)  
+  write.table(peak_celltypes_filtered[[cell_type]], file = paste("./output_dir/class/",i,"_class.bed",sep = ""),sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)  
   i =i +1
 }
 
@@ -91,6 +91,6 @@ for (cell_type in names(peak_celltypes_filtered)) {
   peak_celltypes_filtered[[cell_type]]$end <- as.character(end)
   peak_celltypes_filtered[[cell_type]]$means <- peak_celltypes_filtered[[cell_type]]$row_means
   peak_celltypes_filtered[[cell_type]][,1] <- NULL
-  write.table(peak_celltypes_filtered[[cell_type]], file = paste("./output_dir/regress",i,"_regress.bed",sep = ""),sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)  
+  write.table(peak_celltypes_filtered[[cell_type]], file = paste("./output_dir/regress/",i,"_regress.bed",sep = ""),sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)  
   i =i +1
 }
