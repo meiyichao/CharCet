@@ -155,7 +155,7 @@ The output_data_directory structure is as follows:
 …   	…
 │   	├── n_regression.bed
 ```
-"whole_genome_200bp.bed" can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval). For classification tasks, the mapped region is marked as "1", indicating that it is open. For classification tasks, the mapped region is marked as "1", indicating that it is open. For regression tasks, the mapped region is marked as the accessibility level, which is derived from the average accessibility value of all cells in the corresponding cell population for that region. The format of the output directory's bed file is as follows:
+"whole_genome_200bp.bed" can be obtained using the "makewindows" function of the [bedtools](https://bedtools.readthedocs.io/en/latest/) tool. We use the intersect function of the bedtools tool to map cell type-specific peaks to the human reference genome of hg19 (200bp non overlapping interval). For classification tasks, the mapped region is marked as "1", indicating that it is open. For regression tasks, the mapped region is marked as the accessibility level, which is derived from the average accessibility value of all cells in the corresponding cell population for that region. The format of the output directory's bed file is as follows:
 
 Classification:
 ```
