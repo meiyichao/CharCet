@@ -5,11 +5,19 @@
  CharCet is a deep-learning framework that integrates DNA sequences and single-cell transcription data to predict chromatin accessibility.
  
  # Requirements
+ 
+ ## Python
 - torch(2.1.1)
 - scikit-learn(1.3.1)
 - pyfasta(0.5.2)
 - pandas(1.3.4)
 - numpy(1.23.5)
+
+ ## R
+- Seurat(4.4.0)
+- tidyverse(2.0.0)
+- patchwork(1.1.3)
+- dplyr(1.1.3)
 
 # Installation
 CharCet can be downloaded by
