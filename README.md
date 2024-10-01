@@ -18,6 +18,8 @@
 - tidyverse(2.0.0)
 - patchwork(1.1.3)
 - dplyr(1.1.3)
+- gtools(3.9.4)
+- Matrix(1.6.5)
 
 # Installation
 CharCet can be downloaded by
