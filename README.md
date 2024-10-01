@@ -33,7 +33,7 @@ We provide detailed step-by-step instructions for running CharCet model includin
 ## Data preprocessing
 **Step 1**: Preprocess scRNA-seq data and generate expression matrix(C x N)
 
-We provide 'GenerationExpression_matrix.R' for generating expression matrices of cell types.
+We provide 'GenerationExpression_matrix.R' for generating expression matrices of cell types.Please ensure that the R command already exists in the environment variable.
 ```R
 Rscript Generation_expression_matrix.R <input_data_directory> <output_data_directory>
 <input_data_directory>:input data directory
