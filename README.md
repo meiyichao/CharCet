@@ -1,4 +1,3 @@
-# CharCet
  
  ![model](https://github.com/meiyichao/CharCet/blob/main/model.png)
  
