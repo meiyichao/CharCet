@@ -33,7 +33,6 @@ In order to standardize the input data format, CharCet requires single-cell tran
 ## Data preprocessing
 **Step 1**: Preprocess scRNA-seq data and generate expression matrix
 Users are required to execute the R script Generation_expression_matrix.R using the Rscript command. This script generates expression matrices for each cell type and stores them in the final_exp_matrix.txt file.
-We provide 'GenerationExpression_matrix.R' for generating expression matrices of cell types. Please ensure that the R command already exists in the environment variable.
 ```R
 Rscript Generation_expression_matrix.R <input_data_directory> <output_data_directory>
 ```
