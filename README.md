@@ -72,11 +72,8 @@ python Regression_model.py <cell_type_id> <input_data_directory> <output_data_di
 ## Model testing
 Similar to model training, CharCet offers two programs for model testing: Classification_test.py and Regression_test.py, designed for testing classification and regression models, respectively. Users can run these programs using the provided commands. The test set's cell type number is determined by the "cell_type_id" parameter.
 ```python
-python Classification_test.py <FOLD_ID> <input_data_directory> <output_data_directory>
-python Regression_test.py <FOLD_ID> <input_data_directory> <output_data_directory>
-```
-```python
-python Regression_test.py <FOLD_ID> <input_data_directory> <output_data_directory>
+python Classification_test.py <cell_type_id> <input_data_directory> <output_data_directory>
+python Regression_test.py <cell_type_id> <input_data_directory> <output_data_directory>
 ```
 CharCet stores the predicted results for each cell type as a *.CSV file in the following format.
 ```
