@@ -32,6 +32,7 @@ In order to standardize the input data format, CharCet requires single-cell tran
 
 ## Data preprocessing
 **Step 1**: Preprocess scRNA-seq data and generate expression matrix
+
 Users are required to execute the R script Generation_expression_matrix.R using the Rscript command. This script generates expression matrices for each cell type and stores them in the final_exp_matrix.txt file.
 ```R
 Rscript Generation_expression_matrix.R <input_data_directory> <output_data_directory>
@@ -46,6 +47,7 @@ The size of the expression matrix is C x N, where C represents the number of cel
 ```
 
 **Step 2**: Preprocess scATAC-seq data and obtain cell type-specific peaks
+
 Similar to Step 1, users are required to execute the R script using the Rscript command to produce accessible files in *.bed format for each cell type.
 ```R
 Rscript Generation_celltype_specific_peaks.R <input_data_directory> <output_data_directory>
