@@ -1,2 +1,0 @@
-10x-Multiome-Pbmc10k-RNA.h5ad	http://download.gao-lab.org/GLUE/dataset/10x-Multiome-Pbmc10k-RNA.h5ad
-10x-Multiome-Pbmc10k-ATAC.h5ad	http://download.gao-lab.org/GLUE/dataset/10x-Multiome-Pbmc10k-ATAC.h5ad
